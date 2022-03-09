@@ -1,5 +1,6 @@
 import "./Expenses.css";
 import ExpenseItem from "./ExpenseItem";
+import Card from './Card';
 
 function Expenses(props) {
   const mappedExpensesArray = props.expenseList.map((x) => {
@@ -8,7 +9,7 @@ function Expenses(props) {
     );
   });
 
-  return <div className="expenses">{mappedExpensesArray}</div>;
+  return <Card className="expenses">{mappedExpensesArray}</Card>;
 }
 
 export default Expenses;
