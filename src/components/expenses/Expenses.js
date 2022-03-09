@@ -1,15 +1,29 @@
-import "./Expenses.css";
-import ExpenseItem from "./ExpenseItem";
-import Card from '../ui/Card';
+import React, { useState } from "react";
 
-function Expenses(props) {
+import "./Expenses.css";
+import ExpensesFilter from "./ExpensesFilter";
+import ExpenseItem from "./ExpenseItem";
+import Card from "../ui/Card";
+
+const Expenses = (props) => {
+  const [currentYear, setCurrentYear] = useState("2022");
+
   const mappedExpensesArray = props.expenseList.map((x) => {
     return (
-      <ExpenseItem id={x.id} title={x.title} amount={x.amount} date={x.date} />
+      <ExpenseItem key={x.id} title={x.title} amount={x.amount} date={x.date} />
     );
   });
 
-  return <Card className="expenses">{mappedExpensesArray}</Card>;
-}
+  const onOptionChangeHandler = (selectedYear) => {
+    setCurrentYear(selectedYear);
+  };
+
+  return (
+    <div>
+      <ExpensesFilter onOptionChange={onOptionChangeHandler} />
+      <Card className="expenses">{mappedExpensesArray}</Card>
+    </div>
+  );
+};
 
 export default Expenses;
