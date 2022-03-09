@@ -6,7 +6,7 @@ import ExpenseItem from "./ExpenseItem";
 import Card from "../ui/Card";
 
 const Expenses = (props) => {
-  const [currentYear, setCurrentYear] = useState("2022");
+  const [currentYear, setCurrentYear] = useState("2021");
 
   const mappedExpensesArray = props.expenseList.map((x) => {
     return (
@@ -19,10 +19,13 @@ const Expenses = (props) => {
   };
 
   return (
-    <div>
-      <ExpensesFilter onOptionChange={onOptionChangeHandler} />
-      <Card className="expenses">{mappedExpensesArray}</Card>
-    </div>
+    <Card className="expenses">
+      <ExpensesFilter
+        selectedYear={currentYear}
+        onOptionChange={onOptionChangeHandler}
+      />
+      {mappedExpensesArray}
+    </Card>
   );
 };
 
