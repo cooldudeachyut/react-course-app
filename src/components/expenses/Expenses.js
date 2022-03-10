@@ -6,9 +6,16 @@ import ExpenseItem from "./ExpenseItem";
 import Card from "../ui/Card";
 
 const Expenses = (props) => {
-  const [currentYear, setCurrentYear] = useState("2021");
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear().toString());
 
-  const mappedExpensesArray = props.expenseList.map((x) => {
+  const filteredExpensesArray = props.expenseList.filter((x) => {
+    console.log(x.date.getFullYear());
+    return (x.date.getFullYear().toString() === currentYear);
+  });
+
+  console.log(filteredExpensesArray);
+
+  const mappedExpensesArray = filteredExpensesArray.map((x) => {
     return (
       <ExpenseItem key={x.id} title={x.title} amount={x.amount} date={x.date} />
     );
