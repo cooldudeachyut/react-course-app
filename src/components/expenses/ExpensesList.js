@@ -6,7 +6,7 @@ import ExpenseItem from "./ExpenseItem";
 const ExpensesList = (props) => {
   if (props.list.length > 0) {
     return (
-      <ul className='expenses-list'>
+      <ul className="expenses-list">
         {props.list.map((x) => {
           return (
             <ExpenseItem
@@ -19,12 +19,7 @@ const ExpensesList = (props) => {
         })}
       </ul>
     );
-  } else
-    return (
-      <div cl>
-        <h2 className="expenses-list__fallback">No expenses found!</h2>
-      </div>
-    );
+  } else return <h2 className="expenses-list__fallback">No expenses found!</h2>;
 };
 
 export default ExpensesList;
