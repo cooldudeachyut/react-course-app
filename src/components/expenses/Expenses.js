@@ -2,23 +2,17 @@ import React, { useState } from "react";
 
 import "./Expenses.css";
 import ExpensesFilter from "./ExpensesFilter";
+import ExpensesList from './ExpensesList';
 import ExpenseItem from "./ExpenseItem";
 import Card from "../ui/Card";
 
 const Expenses = (props) => {
-  const [currentYear, setCurrentYear] = useState(new Date().getFullYear().toString());
+  const [currentYear, setCurrentYear] = useState(
+    new Date().getFullYear().toString()
+  );
 
   const filteredExpensesArray = props.expenseList.filter((x) => {
-    console.log(x.date.getFullYear());
-    return (x.date.getFullYear().toString() === currentYear);
-  });
-
-  console.log(filteredExpensesArray);
-
-  const mappedExpensesArray = filteredExpensesArray.map((x) => {
-    return (
-      <ExpenseItem key={x.id} title={x.title} amount={x.amount} date={x.date} />
-    );
+    return x.date.getFullYear().toString() === currentYear;
   });
 
   const onOptionChangeHandler = (selectedYear) => {
@@ -31,7 +25,7 @@ const Expenses = (props) => {
         selectedYear={currentYear}
         onOptionChange={onOptionChangeHandler}
       />
-      {mappedExpensesArray}
+      <ExpensesList list={filteredExpensesArray}/>
     </Card>
   );
 };
